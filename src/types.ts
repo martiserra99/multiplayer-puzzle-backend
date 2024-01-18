@@ -11,6 +11,7 @@ export type JsonUser = {
   id: string;
   style: number;
   coords: Position;
+  rotate: number;
   selected: { piece: JsonPiece; offset: Position } | null;
 };
 

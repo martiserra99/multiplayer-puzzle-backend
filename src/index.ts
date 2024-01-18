@@ -46,10 +46,24 @@ io.on("connection", (socket: Socket) => {
     io.to(roomId).emit("room:get", room.get());
   });
 
+  socket.on("room:mouseup", ({ roomId }) => {
+    const room = rooms.find((room) => room.id === roomId);
+    if (!room) return;
+    room.mouseup(socket.id);
+    io.to(roomId).emit("room:get", room.get());
+  });
+
   socket.on("room:rotate", ({ roomId, position }) => {
     const room = rooms.find((room) => room.id === roomId);
     if (!room) return;
-    room.rotate(position);
+    room.rotatePiece(position);
+    io.to(roomId).emit("room:get", room.get());
+  });
+
+  socket.on("room:rotate-mousedown", ({ roomId, position }) => {
+    const room = rooms.find((room) => room.id === roomId);
+    if (!room) return;
+    room.rotateMousedown(socket.id, position);
     io.to(roomId).emit("room:get", room.get());
   });
 

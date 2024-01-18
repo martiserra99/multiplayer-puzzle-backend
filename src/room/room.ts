@@ -3,6 +3,7 @@ import { JsonRoom, Position } from "../types";
 import Users from "./room.users";
 import Puzzle from "./room.puzzle";
 import Pieces from "./room.pieces";
+import config from "../config";
 
 export default class Room {
   private users: Users;
@@ -45,7 +46,15 @@ export default class Room {
     this.users.move(id, coords);
   }
 
-  rotate(position: number) {
+  mouseup(id: string) {
+    this.users.mouseup(id);
+  }
+
+  rotatePiece(position: number) {
     this.pieces.rotate(position);
+  }
+
+  rotateMousedown(id: string, position: number) {
+    this.users.rotateMousedown(id, position);
   }
 }

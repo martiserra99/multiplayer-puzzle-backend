@@ -26,6 +26,7 @@ export default class Users {
       id,
       style: random(10),
       coords: { x: 0, y: 0 },
+      rotate: -1,
       selected: null,
     });
   }
@@ -38,5 +39,17 @@ export default class Users {
     const user = this.json.find((user) => user.id === id);
     if (!user) return;
     user.coords = coords;
+  }
+
+  mouseup(id: string) {
+    const user = this.json.find((user) => user.id === id);
+    if (!user) return;
+    user.rotate = -1;
+  }
+
+  rotateMousedown(id: string, position: number) {
+    const user = this.json.find((user) => user.id === id);
+    if (!user) return;
+    user.rotate = position;
   }
 }
