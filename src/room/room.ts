@@ -15,6 +15,10 @@ export default class Room {
     this.pieces = new Pieces();
   }
 
+  get numberUsers() {
+    return this.users.length;
+  }
+
   set(json: JsonRoom) {
     this.puzzle.set(json.puzzle);
     this.pieces.set(json.pieces);
@@ -31,6 +35,10 @@ export default class Room {
 
   join(id: string) {
     this.users.add(id);
+  }
+
+  leave(id: string) {
+    this.users.remove(id);
   }
 
   move(id: string, coords: Position) {

@@ -55,16 +55,14 @@ io.on("connection", (socket: Socket) => {
 
   socket.on("disconnect", () => {
     console.log("disconnected");
-    // for (let i = 0; i < rooms.length; i++) {
-    //   const room = rooms[i];
-    //   if (room.users[socket.id]) {
-    //     delete room.users[socket.id];
-    //     if (Object.keys(room.users).length === 0) {
-    //       rooms.splice(i, 1);
-    //     }
-    //     i--;
-    //   }
-    // }
+    for (let i = 0; i < rooms.length; i++) {
+      const room = rooms[i];
+      room.leave(socket.id);
+      if (room.numberUsers === 0) {
+        rooms.splice(i, 1);
+        i--;
+      }
+    }
   });
 });
 

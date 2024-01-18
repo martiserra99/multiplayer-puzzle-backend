@@ -9,6 +9,10 @@ export default class Users {
     this.json = [];
   }
 
+  get length() {
+    return this.json.length;
+  }
+
   set(json: JsonUsers) {
     this.json = json;
   }
@@ -24,6 +28,10 @@ export default class Users {
       coords: { x: 0, y: 0 },
       selected: null,
     });
+  }
+
+  remove(id: string) {
+    this.json = this.json.filter((user) => user.id !== id);
   }
 
   move(id: string, coords: Position) {
