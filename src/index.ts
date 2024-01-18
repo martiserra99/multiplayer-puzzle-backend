@@ -37,12 +37,12 @@ io.on("connection", (socket: Socket) => {
     io.to(roomId).emit("room:get", room.get());
   });
 
-  // socket.on("room:click", ({ roomId, coords }) => {
-  //   const room = rooms.find((room) => room.id === roomId);
-  //   if (!room) return;
-  //   room.users[socket.id].push(coords);
-  //   io.to(roomId).emit("room:get", room);
-  // });
+  socket.on("room:rotate", ({ roomId, position }) => {
+    const room = rooms.find((room) => room.id === roomId);
+    if (!room) return;
+    room.rotate(position);
+    io.to(roomId).emit("room:get", room.get());
+  });
 
   socket.on("disconnect", () => {
     console.log("disconnected");

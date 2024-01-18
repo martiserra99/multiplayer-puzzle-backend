@@ -25,4 +25,8 @@ export class Room {
       pieces: this.pieces.get(),
     };
   }
+
+  rotate(position: number) {
+    this.pieces.rotate(position);
+  }
 }
