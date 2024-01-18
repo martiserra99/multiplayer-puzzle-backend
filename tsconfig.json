@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs", // Node.js has limited support for ES Modules so use use CommonJS
+    "outDir": "build",
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true, // Too make sure each of our files is a module
+    "esModuleInterop": true, // To be able to use ES Modules in the source code
+    "resolveJsonModule": true, // To be able to import json modules (node aleady supports it)
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"]
+}
