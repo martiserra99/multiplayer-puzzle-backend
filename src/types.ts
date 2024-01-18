@@ -9,6 +9,7 @@ export type JsonUsers = JsonUser[];
 
 export type JsonUser = {
   id: string;
+  style: number;
   coords: Position;
   selected: { piece: JsonPiece; offset: Position } | null;
 };

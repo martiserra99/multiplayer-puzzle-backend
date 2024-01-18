@@ -1,5 +1,7 @@
 import { JsonUsers } from "../types";
 
+const random = (max: number) => Math.floor(Math.random() * max);
+
 export default class Users {
   private json: JsonUsers;
 
@@ -16,6 +18,11 @@ export default class Users {
   }
 
   add(id: string) {
-    this.json.push({ id, coords: { x: 0, y: 0 }, selected: null });
+    this.json.push({
+      id,
+      style: random(10),
+      coords: { x: 0, y: 0 },
+      selected: null,
+    });
   }
 }
