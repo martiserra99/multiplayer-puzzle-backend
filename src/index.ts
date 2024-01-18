@@ -39,6 +39,13 @@ io.on("connection", (socket: Socket) => {
     io.to(roomId).emit("room:get", room.get());
   });
 
+  socket.on("room:move", ({ roomId, coords }) => {
+    const room = rooms.find((room) => room.id === roomId);
+    if (!room) return;
+    room.move(socket.id, coords);
+    io.to(roomId).emit("room:get", room.get());
+  });
+
   socket.on("room:rotate", ({ roomId, position }) => {
     const room = rooms.find((room) => room.id === roomId);
     if (!room) return;

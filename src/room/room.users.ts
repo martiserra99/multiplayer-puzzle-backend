@@ -1,4 +1,4 @@
-import { JsonUsers } from "../types";
+import { JsonUsers, Position } from "../types";
 
 const random = (max: number) => Math.floor(Math.random() * max);
 
@@ -24,5 +24,11 @@ export default class Users {
       coords: { x: 0, y: 0 },
       selected: null,
     });
+  }
+
+  move(id: string, coords: Position) {
+    const user = this.json.find((user) => user.id === id);
+    if (!user) return;
+    user.coords = coords;
   }
 }

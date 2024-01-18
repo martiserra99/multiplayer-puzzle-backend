@@ -1,4 +1,4 @@
-import { JsonRoom } from "../types";
+import { JsonRoom, Position } from "../types";
 
 import Users from "./room.users";
 import Puzzle from "./room.puzzle";
@@ -31,6 +31,10 @@ export default class Room {
 
   join(id: string) {
     this.users.add(id);
+  }
+
+  move(id: string, coords: Position) {
+    this.users.move(id, coords);
   }
 
   rotate(position: number) {
