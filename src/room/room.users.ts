@@ -25,7 +25,7 @@ export default class Users {
     this.json.push({
       id,
       style: random(10),
-      coords: { x: 0, y: 0 },
+      coords: { x: -100000, y: -100000 },
       rotate: -1,
       selected: null,
     });
