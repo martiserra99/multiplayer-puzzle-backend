@@ -8,15 +8,11 @@ export default class Pieces {
   private json: JsonPieces;
 
   constructor() {
-    const pieces = createPieces(
+    this.json = createPieces(
       config.dimensions.x,
       config.dimensions.y,
       config.pieces
     );
-    this.json = pieces.map((piece, index) => ({
-      position: index,
-      piece,
-    }));
   }
 
   set(json: JsonPieces) {
