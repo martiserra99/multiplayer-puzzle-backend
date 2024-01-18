@@ -3,7 +3,7 @@ import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
-import { Room } from "./room/room";
+import Room from "./room/room";
 
 dotenv.config();
 
@@ -22,10 +22,12 @@ io.on("connection", (socket: Socket) => {
 
   socket.on("room:join", ({ roomId }, callback) => {
     const room = rooms.find((room) => room.id === roomId);
-    if (!room) {
-      rooms.push(new Room(roomId));
+    if (room) {
+      room.join(socket.id);
     } else {
-      // room.users[socket.id] = [];
+      const room = new Room(roomId);
+      rooms.push(room);
+      room.join(socket.id);
     }
     socket.join(roomId);
     callback();

@@ -1,12 +1,16 @@
 export type JsonRoom = {
   id: string;
-  users: {
-    id: string;
-    coords: Position;
-    selected: { piece: JsonPiece; offset: Position } | null;
-  }[];
+  users: JsonUsers;
   puzzle: JsonPuzzle;
   pieces: JsonPieces;
+};
+
+export type JsonUsers = JsonUser[];
+
+export type JsonUser = {
+  id: string;
+  coords: Position;
+  selected: { piece: JsonPiece; offset: Position } | null;
 };
 
 export type JsonPuzzle = {

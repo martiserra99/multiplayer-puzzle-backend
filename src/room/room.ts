@@ -1,13 +1,16 @@
 import { JsonRoom } from "../types";
 
+import Users from "./room.users";
 import Puzzle from "./room.puzzle";
 import Pieces from "./room.pieces";
 
-export class Room {
+export default class Room {
+  private users: Users;
   private puzzle: Puzzle;
   private pieces: Pieces;
 
   constructor(public id: string) {
+    this.users = new Users();
     this.puzzle = new Puzzle();
     this.pieces = new Pieces();
   }
@@ -20,10 +23,14 @@ export class Room {
   get(): JsonRoom {
     return {
       id: this.id,
-      users: [],
+      users: this.users.get(),
       puzzle: this.puzzle.get(),
       pieces: this.pieces.get(),
     };
+  }
+
+  join(id: string) {
+    this.users.add(id);
   }
 
   rotate(position: number) {
