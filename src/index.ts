@@ -3,7 +3,7 @@ import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
-import { JsonRoom } from "./types";
+import { Room } from "./room/room";
 
 dotenv.config();
 
@@ -15,39 +15,34 @@ const io = new Server(server, {
   },
 });
 
-const rooms: JsonRoom[] = [];
+const rooms: Room[] = [];
 
 io.on("connection", (socket: Socket) => {
   console.log("connected");
 
   socket.on("room:join", ({ roomId }, callback) => {
-    // const room = rooms.find((room) => room.id === roomId);
-    // if (!room) {
-    //   rooms.push({
-    //     id: roomId,
-    //     users: {
-    //       [socket.id]: [],
-    //     },
-    //   });
-    // } else {
-    //   room.users[socket.id] = [];
-    // }
-    // socket.join(roomId);
-    // callback();
+    const room = rooms.find((room) => room.id === roomId);
+    if (!room) {
+      rooms.push(new Room(roomId));
+    } else {
+      // room.users[socket.id] = [];
+    }
+    socket.join(roomId);
+    callback();
   });
 
   socket.on("room:get", ({ roomId }) => {
     const room = rooms.find((room) => room.id === roomId);
     if (!room) return;
-    io.to(roomId).emit("room:get", room);
+    io.to(roomId).emit("room:get", room.get());
   });
 
-  socket.on("room:click", ({ roomId, coords }) => {
-    // const room = rooms.find((room) => room.id === roomId);
-    // if (!room) return;
-    // room.users[socket.id].push(coords);
-    // io.to(roomId).emit("room:get", room);
-  });
+  // socket.on("room:click", ({ roomId, coords }) => {
+  //   const room = rooms.find((room) => room.id === roomId);
+  //   if (!room) return;
+  //   room.users[socket.id].push(coords);
+  //   io.to(roomId).emit("room:get", room);
+  // });
 
   socket.on("disconnect", () => {
     console.log("disconnected");

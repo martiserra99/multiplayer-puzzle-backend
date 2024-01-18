@@ -15,7 +15,7 @@ export type JsonPuzzle = {
 }[];
 
 export type JsonPieces = {
-  position: Position;
+  position: number;
   piece: JsonPiece;
 }[];
 

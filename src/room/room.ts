@@ -7,7 +7,7 @@ export class Room {
   private puzzle: Puzzle;
   private pieces: Pieces;
 
-  constructor(private id: string) {
+  constructor(public id: string) {
     this.puzzle = new Puzzle();
     this.pieces = new Pieces();
   }
