@@ -1,4 +1,4 @@
-import Piece from "./room.piece";
+import Piece from "./piece";
 
 import { JsonUser, Position } from "../types";
 

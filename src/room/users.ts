@@ -1,4 +1,4 @@
-import User from "./room.user";
+import User from "./user";
 
 import { JsonUsers } from "../types";
 

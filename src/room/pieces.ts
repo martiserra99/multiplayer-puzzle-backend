@@ -1,6 +1,6 @@
 import { JsonPieces } from "../types";
 
-import Piece from "./room.piece";
+import Piece from "./piece";
 
 import createPieces from "../create-pieces";
 

@@ -3,8 +3,8 @@ import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
-import Room from "./room/room";
-import User from "./room/room.user";
+import Room from "./room";
+import User from "./room/user";
 
 dotenv.config();
 

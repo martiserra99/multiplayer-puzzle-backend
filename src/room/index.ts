@@ -1,9 +1,9 @@
 import { JsonRoom, Position } from "../types";
 
-import Users from "./room.users";
-import Puzzle from "./room.puzzle";
-import Pieces from "./room.pieces";
-import User from "./room.user";
+import Users from "./users";
+import Puzzle from "./puzzle";
+import Pieces from "./pieces";
+import User from "./user";
 
 export default class Room {
   private users: Users;
