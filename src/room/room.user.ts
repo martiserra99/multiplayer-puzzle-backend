@@ -2,6 +2,8 @@ import Piece from "./room.piece";
 
 import { JsonUser, Position } from "../types";
 
+const random = (max: number) => Math.floor(Math.random() * max);
+
 export default class User {
   public style: number;
   public coords: Position;
@@ -10,10 +12,16 @@ export default class User {
 
   constructor(public id: string) {
     this.id = id;
-    this.style = 0;
+    this.style = random(10);
     this.coords = { x: -100000, y: -100000 };
     this.rotate = -1;
-    this.selected = null;
+    this.selected = {
+      piece: new Piece(0, 0, [
+        { x: 0, y: 0 },
+        { x: 0, y: 1 },
+      ]),
+      offset: { x: 0, y: 0 },
+    };
   }
 
   get json(): JsonUser {

@@ -2,8 +2,6 @@ import User from "./room.user";
 
 import { JsonUsers } from "../types";
 
-const random = (max: number) => Math.floor(Math.random() * max);
-
 export default class Users {
   public users: User[];
 
