@@ -5,8 +5,6 @@ import { JsonUser, Position } from "../types";
 
 const random = (max: number) => Math.floor(Math.random() * max);
 
-const SQUARE_SIZE = 20;
-
 export default class User {
   public style: number;
   public coords: Position;
@@ -29,13 +27,6 @@ export default class User {
       rotate: this.rotate,
       selectedPiece: this.selectedPiece ? this.selectedPiece.json : null,
     };
-  }
-
-  get selectedPieceCoords(): Position {
-    if (!this.selectedPiece) throw new Error("No selected piece");
-    const x = this.coords.x - this.selectedPiece.offset.x + SQUARE_SIZE / 2;
-    const y = this.coords.y - this.selectedPiece.offset.y + SQUARE_SIZE / 2;
-    return { x, y };
   }
 
   move(coords: Position) {
