@@ -29,6 +29,10 @@ export default class Pieces {
     if (piece) piece.rotate();
   }
 
+  insert(piece: Piece) {
+    this.pieces.push(piece);
+  }
+
   remove(position: number): Piece | undefined {
     const index = this.pieces.findIndex((piece) => piece.id === position);
     if (index === -1) return;

@@ -45,8 +45,16 @@ export default class Room {
     user.move(coords);
   }
 
-  mouseup(user: User): void {
-    user.mouseup();
+  mouseup(user: User, coords: Position): void {
+    user.rotateBlur();
+    const selectedPiece = user.removeSelectedPiece();
+    if (selectedPiece) {
+      const coordsPiece = {
+        x: coords.x - selectedPiece.offset.x,
+        y: coords.y - selectedPiece.offset.y,
+      };
+      this.pieces.insert(selectedPiece.piece);
+    }
   }
 
   rotate(user: User, position: number) {

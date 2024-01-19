@@ -51,8 +51,8 @@ io.on("connection", (socket: Socket) => {
 
   socket.on(
     "room:mouseup",
-    withUser(socket, ({ room, user }) => {
-      room.mouseup(user);
+    withUser(socket, ({ room, user, coords }) => {
+      room.mouseup(user, coords);
       io.to(room.id).emit("room:get", room.json);
     })
   );

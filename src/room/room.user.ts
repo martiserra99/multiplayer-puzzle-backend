@@ -34,15 +34,21 @@ export default class User {
     this.coords = coords;
   }
 
-  mouseup() {
-    this.rotate = -1;
-  }
-
   rotateFocus(position: number) {
     this.rotate = position;
   }
 
+  rotateBlur() {
+    this.rotate = -1;
+  }
+
   selectPiece(piece: Piece, offset: Position) {
     this.selected = { piece, offset };
+  }
+
+  removeSelectedPiece(): { piece: Piece; offset: Position } | null {
+    const selected = this.selected;
+    this.selected = null;
+    return selected;
   }
 }
