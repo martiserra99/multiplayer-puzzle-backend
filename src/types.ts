@@ -12,7 +12,7 @@ export type JsonUser = {
   style: number;
   coords: Position;
   rotate: number;
-  selected: JsonSelectedPiece | null;
+  selectedPiece: JsonSelectedPiece | null;
 };
 
 export type JsonPuzzle = {

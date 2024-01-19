@@ -10,6 +10,14 @@ export default class Piece {
     this.positions = positions;
   }
 
+  get numColumns(): number {
+    return this.positions.reduce((acc, { x }) => (acc < x ? x : acc), 0) + 1;
+  }
+
+  get numRows(): number {
+    return this.positions.reduce((acc, { y }) => (acc < y ? y : acc), 0) + 1;
+  }
+
   get json(): JsonPiece {
     return {
       id: this.id,

@@ -14,8 +14,4 @@ export default class SelectedPiece {
   get json() {
     return { piece: this.piece.json, offset: this.offset };
   }
-
-  coords(position: Position): Position {
-    return { x: 0, y: 0 };
-  }
 }
