@@ -81,6 +81,14 @@ io.on("connection", (socket: Socket) => {
     })
   );
 
+  socket.on(
+    "room:select-from-puzzle",
+    withUser(socket, ({ room, user, id, offset }) => {
+      room.selectFromPuzzle(user, id, offset);
+      io.to(room.id).emit("room:get", room.json);
+    })
+  );
+
   socket.on("disconnect", () => {
     console.log("disconnected");
     for (let i = 0; i < rooms.length; i++) {

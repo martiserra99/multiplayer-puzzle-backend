@@ -37,8 +37,8 @@ export default class Pieces {
     this.pieces.push(piece);
   }
 
-  remove(position: number): Piece | undefined {
-    const index = this.pieces.findIndex((piece) => piece.id === position);
+  remove(id: number): Piece | undefined {
+    const index = this.pieces.findIndex((piece) => piece.id === id);
     if (index === -1) return;
     return this.pieces.splice(index, 1)[0];
   }

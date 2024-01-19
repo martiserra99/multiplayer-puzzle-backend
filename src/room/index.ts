@@ -77,8 +77,13 @@ export default class Room {
   }
 
   selectFromPieces(user: User, id: number, offset: Position): void {
-    const piece = this.pieces.remove(id);
-    if (piece) user.selectPiece(piece, offset);
+    const selected = this.pieces.remove(id);
+    if (selected) user.selectPiece(selected, offset);
+  }
+
+  selectFromPuzzle(user: User, id: number, offset: Position): void {
+    const selected = this.puzzle.remove(id);
+    if (selected) user.selectPiece(selected, offset);
   }
 
   private coordsSelectedPiece(coords: Position, selectedPiece: SelectedPiece) {

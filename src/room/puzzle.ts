@@ -29,6 +29,12 @@ export default class Puzzle {
     return true;
   }
 
+  remove(id: number): Piece | undefined {
+    const index = this.puzzlePieces.findIndex(({ piece }) => piece.id === id);
+    if (index === -1) return;
+    return this.puzzlePieces.splice(index, 1)[0].piece;
+  }
+
   private fromCoordsToPosition(coords: Position): Position {
     const size = constants.puzzle.content.size.width / config.dimensions.x;
     const relativeX = coords.x - constants.puzzle.content.coords.x;
