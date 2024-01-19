@@ -9,6 +9,10 @@ export default class Users {
     this.users = [];
   }
 
+  [Symbol.iterator]() {
+    return this.users[Symbol.iterator]();
+  }
+
   get json(): JsonUsers {
     return this.users.map((user) => user.json);
   }

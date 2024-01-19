@@ -58,14 +58,14 @@ export default class Room {
   }
 
   rotate(user: User, position: number) {
-    if (this.users.json.some((i) => i.rotate === position && i !== user)) {
+    if ([...this.users].some((u) => u.rotate === position && u !== user)) {
       return;
     }
     this.pieces.rotate(position);
   }
 
   rotateFocus(user: User, position: number) {
-    if (this.users.json.some((i) => i.rotate === position && i !== user)) {
+    if ([...this.users].some((u) => u.rotate === position && u !== user)) {
       return;
     }
     user.rotateFocus(position);

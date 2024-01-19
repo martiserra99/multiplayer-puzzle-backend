@@ -1,4 +1,5 @@
 import Piece from "./piece";
+import SelectedPiece from "./selected-piece";
 
 import { JsonUser, Position } from "../types";
 
@@ -8,14 +9,14 @@ export default class User {
   public style: number;
   public coords: Position;
   public rotate: number;
-  public selected: { piece: Piece; offset: Position } | null;
+  public selectedPiece: SelectedPiece | null;
 
   constructor(public id: string) {
     this.id = id;
     this.style = random(10);
     this.coords = { x: -100000, y: -100000 };
     this.rotate = -1;
-    this.selected = null;
+    this.selectedPiece = null;
   }
 
   get json(): JsonUser {
@@ -24,9 +25,7 @@ export default class User {
       style: this.style,
       coords: this.coords,
       rotate: this.rotate,
-      selected: this.selected
-        ? { piece: this.selected.piece.json, offset: this.selected.offset }
-        : null,
+      selected: this.selectedPiece ? this.selectedPiece.json : null,
     };
   }
 
@@ -43,12 +42,12 @@ export default class User {
   }
 
   selectPiece(piece: Piece, offset: Position) {
-    this.selected = { piece, offset };
+    this.selectedPiece = new SelectedPiece(piece, offset);
   }
 
-  removeSelectedPiece(): { piece: Piece; offset: Position } | null {
-    const selected = this.selected;
-    this.selected = null;
+  removeSelectedPiece(): SelectedPiece | null {
+    const selected = this.selectedPiece;
+    this.selectedPiece = null;
     return selected;
   }
 }

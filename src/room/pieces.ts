@@ -20,6 +20,10 @@ export default class Pieces {
     });
   }
 
+  [Symbol.iterator]() {
+    return this.pieces[Symbol.iterator]();
+  }
+
   get json(): JsonPieces {
     return this.pieces.map((piece) => piece.json);
   }
