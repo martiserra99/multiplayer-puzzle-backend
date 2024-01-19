@@ -28,4 +28,10 @@ export default class Pieces {
     const piece = this.pieces.find((piece) => piece.id === position);
     if (piece) piece.rotate();
   }
+
+  remove(position: number): Piece | undefined {
+    const index = this.pieces.findIndex((piece) => piece.id === position);
+    if (index === -1) return;
+    return this.pieces.splice(index, 1)[0];
+  }
 }

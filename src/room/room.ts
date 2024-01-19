@@ -62,4 +62,9 @@ export default class Room {
     }
     user.rotateFocus(position);
   }
+
+  selectFromPieces(user: User, id: number, offset: Position): void {
+    const piece = this.pieces.remove(id);
+    if (piece) user.selectPiece(piece, offset);
+  }
 }

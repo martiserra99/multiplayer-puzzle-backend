@@ -15,13 +15,7 @@ export default class User {
     this.style = random(10);
     this.coords = { x: -100000, y: -100000 };
     this.rotate = -1;
-    this.selected = {
-      piece: new Piece(0, 0, [
-        { x: 0, y: 0 },
-        { x: 0, y: 1 },
-      ]),
-      offset: { x: 0, y: 0 },
-    };
+    this.selected = null;
   }
 
   get json(): JsonUser {
@@ -48,11 +42,7 @@ export default class User {
     this.rotate = position;
   }
 
-  // rotateMousedown(id: string, position: number) {
-  //   const user = this.json.find((user) => user.id === id);
-  //   if (!user) return;
-  //   const some = this.json.some((user) => user.rotate === position);
-  //   if (some) return;
-  //   user.rotate = position;
-  // }
+  selectPiece(piece: Piece, offset: Position) {
+    this.selected = { piece, offset };
+  }
 }
