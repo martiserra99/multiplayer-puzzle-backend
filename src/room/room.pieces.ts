@@ -7,7 +7,7 @@ import createPieces from "../create-pieces";
 import config from "../config";
 
 export default class Pieces {
-  private pieces: Piece[];
+  public pieces: Piece[];
 
   constructor() {
     const pieces: JsonPieces = createPieces(
@@ -22,5 +22,10 @@ export default class Pieces {
 
   get json(): JsonPieces {
     return this.pieces.map((piece) => piece.json);
+  }
+
+  rotate(position: number) {
+    const piece = this.pieces.find((piece) => piece.id === position);
+    if (piece) piece.rotate();
   }
 }

@@ -45,15 +45,21 @@ export default class Room {
     user.move(coords);
   }
 
-  // mouseup(id: string): void {
-  //   this.users.mouseup(id);
-  // }
+  mouseup(user: User): void {
+    user.mouseup();
+  }
 
-  // rotatePiece(position: number) {
-  //   this.pieces.rotate(position);
-  // }
+  rotate(user: User, position: number) {
+    if (this.users.json.some((i) => i.rotate === position && i !== user)) {
+      return;
+    }
+    this.pieces.rotate(position);
+  }
 
-  // rotateMousedown(id: string, position: number) {
-  //   this.users.rotateMousedown(id, position);
-  // }
+  rotateFocus(user: User, position: number) {
+    if (this.users.json.some((i) => i.rotate === position && i !== user)) {
+      return;
+    }
+    user.rotateFocus(position);
+  }
 }

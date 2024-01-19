@@ -1,8 +1,8 @@
 import { JsonPiece, Position } from "../types";
 
 export default class Piece {
-  private style: number;
-  private positions: Position[];
+  public style: number;
+  public positions: Position[];
 
   constructor(public id: number, style: number, positions: Position[]) {
     this.id = id;

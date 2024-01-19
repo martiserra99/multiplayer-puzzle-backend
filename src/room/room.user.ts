@@ -3,10 +3,10 @@ import Piece from "./room.piece";
 import { JsonUser, Position } from "../types";
 
 export default class User {
-  private style: number;
-  private coords: Position;
-  private rotate: number;
-  private selected: { piece: Piece; offset: Position } | null;
+  public style: number;
+  public coords: Position;
+  public rotate: number;
+  public selected: { piece: Piece; offset: Position } | null;
 
   constructor(public id: string) {
     this.id = id;
@@ -32,11 +32,13 @@ export default class User {
     this.coords = coords;
   }
 
-  // mouseup(id: string) {
-  //   const user = this.json.find((user) => user.id === id);
-  //   if (!user) return;
-  //   user.rotate = -1;
-  // }
+  mouseup() {
+    this.rotate = -1;
+  }
+
+  rotateFocus(position: number) {
+    this.rotate = position;
+  }
 
   // rotateMousedown(id: string, position: number) {
   //   const user = this.json.find((user) => user.id === id);

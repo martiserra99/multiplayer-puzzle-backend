@@ -49,29 +49,29 @@ io.on("connection", (socket: Socket) => {
     })
   );
 
-  // socket.on(
-  //   "room:mouseup",
-  //   withUser(socket, ({ room, user }) => {
-  //     room.mouseup(user);
-  //     io.to(room.id).emit("room:get", room.json);
-  //   })
-  // );
+  socket.on(
+    "room:mouseup",
+    withUser(socket, ({ room, user }) => {
+      room.mouseup(user);
+      io.to(room.id).emit("room:get", room.json);
+    })
+  );
 
-  // socket.on(
-  //   "room:rotate",
-  //   withUser(socket, ({ room, user, position }) => {
-  //     room.rotate(user, position);
-  //     io.to(room.id).emit("room:get", room.json);
-  //   })
-  // );
+  socket.on(
+    "room:rotate",
+    withUser(socket, ({ room, user, position }) => {
+      room.rotate(user, position);
+      io.to(room.id).emit("room:get", room.json);
+    })
+  );
 
-  // socket.on(
-  //   "room:rotate-mousedown",
-  //   withUser(socket, ({ room, user, position }) => {
-  //     room.rotateMousedown(user, position);
-  //     io.to(room.id).emit("room:get", room.json);
-  //   })
-  // );
+  socket.on(
+    "room:rotate-focus",
+    withUser(socket, ({ room, user, position }) => {
+      room.rotateFocus(user, position);
+      io.to(room.id).emit("room:get", room.json);
+    })
+  );
 
   socket.on("disconnect", () => {
     console.log("disconnected");
