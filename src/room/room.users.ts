@@ -1,59 +1,33 @@
-import { JsonUsers, Position } from "../types";
+import User from "./room.user";
+
+import { JsonUsers } from "../types";
 
 const random = (max: number) => Math.floor(Math.random() * max);
 
 export default class Users {
-  private json: JsonUsers;
+  public users: User[];
 
   constructor() {
-    this.json = [];
+    this.users = [];
   }
 
-  get length() {
+  get json(): JsonUsers {
+    return this.users.map((user) => user.json);
+  }
+
+  get length(): number {
     return this.json.length;
   }
 
-  set(json: JsonUsers) {
-    this.json = json;
+  join(id: string): void {
+    this.users.push(new User(id));
   }
 
-  get(): JsonUsers {
-    return this.json;
+  user(id: string): User | undefined {
+    return this.users.find((user) => user.id === id);
   }
 
-  add(id: string) {
-    this.json.push({
-      id,
-      style: random(10),
-      coords: { x: -100000, y: -100000 },
-      rotate: -1,
-      selected: null,
-    });
-  }
-
-  exist(id: string) {
-    return this.json.some((user) => user.id === id);
-  }
-
-  remove(id: string) {
-    this.json = this.json.filter((user) => user.id !== id);
-  }
-
-  move(id: string, coords: Position) {
-    const user = this.json.find((user) => user.id === id);
-    if (!user) return;
-    user.coords = coords;
-  }
-
-  mouseup(id: string) {
-    const user = this.json.find((user) => user.id === id);
-    if (!user) return;
-    user.rotate = -1;
-  }
-
-  rotateMousedown(id: string, position: number) {
-    const user = this.json.find((user) => user.id === id);
-    if (!user) return;
-    user.rotate = position;
+  leave(id: string): void {
+    this.users = this.users.filter((user) => user.id !== id);
   }
 }

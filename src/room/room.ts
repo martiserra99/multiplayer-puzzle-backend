@@ -3,7 +3,7 @@ import { JsonRoom, Position } from "../types";
 import Users from "./room.users";
 import Puzzle from "./room.puzzle";
 import Pieces from "./room.pieces";
-import config from "../config";
+import User from "./room.user";
 
 export default class Room {
   private users: Users;
@@ -16,49 +16,44 @@ export default class Room {
     this.pieces = new Pieces();
   }
 
-  get numberUsers() {
-    return this.users.length;
-  }
-
-  set(json: JsonRoom) {
-    this.puzzle.set(json.puzzle);
-    this.pieces.set(json.pieces);
-  }
-
-  get(): JsonRoom {
+  get json(): JsonRoom {
     return {
       id: this.id,
-      users: this.users.get(),
-      puzzle: this.puzzle.get(),
-      pieces: this.pieces.get(),
+      users: this.users.json,
+      puzzle: this.puzzle.json,
+      pieces: this.pieces.json,
     };
   }
 
-  join(id: string) {
-    this.users.add(id);
+  get numberUsers(): number {
+    return this.users.length;
   }
 
-  exist(id: string) {
-    return this.users.exist(id);
+  join(id: string): void {
+    this.users.join(id);
   }
 
-  leave(id: string) {
-    this.users.remove(id);
+  user(id: string): User | undefined {
+    return this.users.user(id);
   }
 
-  move(id: string, coords: Position) {
-    this.users.move(id, coords);
+  leave(id: string): void {
+    this.users.leave(id);
   }
 
-  mouseup(id: string) {
-    this.users.mouseup(id);
+  move(user: User, coords: Position): void {
+    user.move(coords);
   }
 
-  rotatePiece(position: number) {
-    this.pieces.rotate(position);
-  }
+  // mouseup(id: string): void {
+  //   this.users.mouseup(id);
+  // }
 
-  rotateMousedown(id: string, position: number) {
-    this.users.rotateMousedown(id, position);
-  }
+  // rotatePiece(position: number) {
+  //   this.pieces.rotate(position);
+  // }
+
+  // rotateMousedown(id: string, position: number) {
+  //   this.users.rotateMousedown(id, position);
+  // }
 }
