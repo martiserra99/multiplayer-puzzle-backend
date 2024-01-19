@@ -38,6 +38,10 @@ export default class Room {
     this.users.add(id);
   }
 
+  exist(id: string) {
+    return this.users.exist(id);
+  }
+
   leave(id: string) {
     this.users.remove(id);
   }

@@ -31,6 +31,10 @@ export default class Users {
     });
   }
 
+  exist(id: string) {
+    return this.json.some((user) => user.id === id);
+  }
+
   remove(id: string) {
     this.json = this.json.filter((user) => user.id !== id);
   }

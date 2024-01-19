@@ -71,10 +71,14 @@ io.on("connection", (socket: Socket) => {
     console.log("disconnected");
     for (let i = 0; i < rooms.length; i++) {
       const room = rooms[i];
-      room.leave(socket.id);
-      if (room.numberUsers === 0) {
-        rooms.splice(i, 1);
-        i--;
+      if (room.exist(socket.id)) {
+        room.leave(socket.id);
+        if (room.numberUsers === 0) {
+          rooms.splice(i, 1);
+          i--;
+        } else {
+          io.to(room.id).emit("room:get", room.get());
+        }
       }
     }
   });
