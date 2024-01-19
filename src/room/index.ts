@@ -49,10 +49,6 @@ export default class Room {
     user.rotateBlur();
     const selectedPiece = user.removeSelectedPiece();
     if (selectedPiece) {
-      const coordsPiece = {
-        x: coords.x - selectedPiece.offset.x,
-        y: coords.y - selectedPiece.offset.y,
-      };
       this.pieces.insert(selectedPiece.piece);
     }
   }
